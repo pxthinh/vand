@@ -4,6 +4,9 @@ php artisan migrate
 php artisan db:seed
 php artisan serve
 
+A: Algorithm:
+/algorithm
+B:Application:
 /login
 User: tk test1@gmail.com mk 123456
 Quản lý store
