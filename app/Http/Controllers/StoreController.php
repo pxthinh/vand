@@ -7,18 +7,23 @@ use App\Models\Stores;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class StoreController extends Controller
+class StoreController extends BaseUserController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index()
     {
-        $listStore = Stores::where('user_id',Auth::id())->orderBy('updated_at', 'desc')->paginate(10);
+        $listStore = Stores::where('user_id',Auth::guard('user')->id())->orderBy('updated_at', 'desc')->paginate(10);
         return view('store/home', ['listStore' => $listStore]);
     }
 
     public function fetchData(Request $request)
     {
         if ($request->ajax()) {
-            $listStore = Stores::where('user_id',Auth::id())->where(function ($q) use ($request) {
+            $listStore = Stores::where('user_id',Auth::guard('user')->id())->where(function ($q) use ($request) {
                 $q->when($request->filled('store_name'), function ($q) use ($request) {
                     $q->where('store_name', 'LIKE', '%' . $request->store_name . '%');
                 });

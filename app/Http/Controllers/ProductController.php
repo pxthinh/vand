@@ -8,11 +8,16 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductController extends BaseUserController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index($id)
     {
-        $store = Stores::where('user_id',Auth::id())->where('id',$id)->first();
+        $store = Stores::where('user_id',Auth::guard('user')->id())->where('id',$id)->first();
         $listProduct =$store->products()->paginate(10);
         return view('product/home', ['listProduct' => $listProduct,'id' => $id]);
     }

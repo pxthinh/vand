@@ -23,8 +23,8 @@
             <td class="text-success">{{number_format( $product->product_price, 0, '', ',')}} VNĐ</td>
             <td>{!!$product->description !!}</td>
             <td>
-                <a id="edit" data-toggle="modal" data-target="#editForm" data-url="{{ route('edit-product').'&id='.$product->id}}"><i class="fas fa-pencil-alt"></i></a>
-                <a class="_delete_product" id="{{$product->id}}" data-url="{{ route('delete-product', ['store_id'=>$id ,'id'=>$product->id]).'&name='.$product->product_name }}"><i class="fa fa-trash" style="color:red"></i></a>
+                <a href="{{route('show-product-admin',['id'=>$product->id])}}"><i class="fas fa-pencil-alt"></i></a>
+                <a class="_delete_data" id="{{$product->id}}" data-url="{{ route('destroy-product', ['id' => $product->id]).'&name='.$product->product_name }}"><i class="fa fa-trash" style="color:red"></i></a>
             </td>
         </tr>
         @empty
