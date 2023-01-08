@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/algorithm', 'AlgorithmController@Algorithm')->name('algorithm');
+
 Route::get('/login', 'UserController@login')->name('login');
 Route::post('/login', 'UserController@store')->name('store-login');
 Route::get('/logout', 'UserController@logout')->name('logout');
